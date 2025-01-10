@@ -1,0 +1,16 @@
+apiVersion: v1
+data:
+  policy.csv: |
+    p, role:readonly-user, applications, get, default/myapp-*, allow
+    p, role:readonly-user, applications, sync, default/myapp-*, allow
+    p, role:readonly-user, applications, action/apps/Deployment/restart, default/myapp-*, allow
+    p, role:readonly-user, exec, create, default/myapp-*, allow
+    g, peter, role:readonly-user
+    g, marry, role:readonly-user
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-rbac-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-rbac-cm
+  namespace: argocd
